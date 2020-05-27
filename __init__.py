@@ -13,6 +13,16 @@ def count_bikes(region):
     else:
         return r.json()['nhits']
 
+def store_address(region, index):
+    """get store address by index"""
+    r = requests.get(API_URL, params={'refine.region':region})
+    
+    if(r.json()['nhits'] == 0):
+        return None
+    else:
+        return r.json()['records'][index]]['fields']['address']
+        
+        
         
 class AhTest(MycroftSkill):
     def __init__(self):
@@ -26,6 +36,14 @@ class AhTest(MycroftSkill):
         else:
             self.speak_dialog('error')
         
+    @intent_file_handler('address.intent')
+    def get_first_result_address(self, message):
+        address = store_address(message.data['region'],message.data['index'])
+        self.speak_dialog('address',{'address',store_address(message.data['region'],message.data['index'])})
+        
+    @intent_file_handler('test.ah.intent)
+    def testo(self,message):
+        self.speak_dialog('test.ah')
 
 def create_skill():
     return AhTest()
