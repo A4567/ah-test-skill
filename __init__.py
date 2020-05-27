@@ -12,7 +12,13 @@ def count_bikes(region):
         return None
     else:
         return r.json()['nhits']
-   
+
+def shop_address(index,region):
+    re = requests.get(API_URL, params={'refine.region':region})
+    if(re.json()['nhits'] == 0):
+        return None
+    else:
+        return re.json()['records'][index]['fields']['address']
         
 class AhTest(MycroftSkill):
     def __init__(self):
@@ -25,7 +31,16 @@ class AhTest(MycroftSkill):
             self.speak_dialog('bike',{'count' : count_bikes(message.data['region'])})
         else:
             self.speak_dialog('error')
-            
+
+    @intent_file_handler('address.intent')
+    def get_shop_address(self, message):
+        location = shop_address(message.data['index'],message.data['region'])
+        if location:
+            self.speak_dialog('address',{'address' : location})
+        else:
+            self.speak_dialog('error')
+
+
 
 def create_skill():
     return AhTest()
