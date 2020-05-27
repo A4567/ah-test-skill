@@ -4,31 +4,42 @@ import requests
 
 API_URL = 'https://opendata.bristol.gov.uk/api/records/1.0/search/?dataset=cycle-shops-and-repairs&q='
 
-def search_bike(region):
+def count_bikes(region):
     """Search openData for number of bike shops in region."""
     r = requests.get(API_URL, params={'refine.region':region})
-    print('Searching in: ' + region)
     
     if(r.json()['nhits'] == 0):
         return None
     else:
         return r.json()['nhits']
 
-
-
+def store_address(region, index):
+    """get store address by index"""
+    r = requests.get(API_URL, params={'refine.region':region})
+    
+    if(r.json()['nhits'] == 0):
+        return None
+    else:
+        return r.json()['records'][index]]['fields']['address']
+        
+        
+        
 class AhTest(MycroftSkill):
     def __init__(self):
         MycroftSkill.__init__(self)
 
     @intent_file_handler('bike.intent')
     def get_number_bikes(self, message):
-        number = search_bike(message.data['region'])
+        number = count_bikes(message.data['region'])
         if number:
-            self.speak_dialog('bike',{'count' : search_bike(message.data['region'])})
+            self.speak_dialog('bike',{'count' : count_bikes(message.data['region'])})
         else:
             self.speak_dialog('error')
         
-
+    @intent_file_handler('address.intent')
+    def get_first_result_address(self, message):
+        address = store_address(message.data['region'],message.data['index'])
+        self.speak_dialog('location',{'address',store_address(message.data['region'],message.data['index'])})
 
 def create_skill():
     return AhTest()
