@@ -2,9 +2,10 @@ from mycroft import MycroftSkill, intent_file_handler
 
 import requests
 
-API_URL = 'https://opendata.bristol.gov.uk/api/records/1.0/search/?dataset=cycle-shops-and-repairs&q='
+
 
 def count_bikes(region):
+    API_URL = 'https://opendata.bristol.gov.uk/api/records/1.0/search/?dataset=cycle-shops-and-repairs&q='
     """Search openData for number of bike shops in region."""
     r = requests.get(API_URL, params={'refine.region':region})
     
@@ -14,6 +15,7 @@ def count_bikes(region):
         return r.json()['nhits']
 
 def shop_address(index,region):
+    API_URL = 'https://opendata.bristol.gov.uk/api/records/1.0/search/?dataset=cycle-shops-and-repairs&q='
     re = requests.get(API_URL, params={'refine.region':region})
     if(re.json()['nhits'] == 0):
         return None
