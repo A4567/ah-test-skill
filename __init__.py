@@ -37,7 +37,7 @@ class AhTest(MycroftSkill):
         location = shop_address(int(message.data['index']),message.data['region'])
         if location:
             self.speak_dialog('address',{'address' : location})
-            self.gui.show_page("clock_face.qml")
+            self.gui.show_image("https://ichef.bbci.co.uk/food/ic/food_16x9_1600/recipes/easy_chocolate_cake_31070_16x9.jpg")
         else:
             self.speak_dialog('error')
 
