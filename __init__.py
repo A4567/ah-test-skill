@@ -39,7 +39,11 @@ class AhTest(MycroftSkill):
     @intent_file_handler('address.intent')
     def get_first_result_address(self, message):
         address = store_address(message.data['region'],message.data['index'])
-        self.speak_dialog('location',{'address',store_address(message.data['region'],message.data['index'])})
+        self.speak_dialog('address',{'address',store_address(message.data['region'],message.data['index'])})
+        
+    @intent_file_handler('test.ah.intent)
+    def testo(self,message):
+        self.speak_dialog('test.ah')
 
 def create_skill():
     return AhTest()
