@@ -24,9 +24,9 @@ class AhTest(MycroftSkill):
     def get_number_bikes(self, message):
         number = search_bike(message.data['region'])
         if number:
-            self.speak_dialog('bike')
+            self.speak_dialog('bike',{'count' : search_bike(message.data['region'])})
         else:
-            self.speak_dialog('Scream')
+            self.speak_dialog('error')
         
 
 
