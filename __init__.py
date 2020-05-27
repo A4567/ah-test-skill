@@ -37,10 +37,11 @@ class AhTest(MycroftSkill):
         location = shop_address(int(message.data['index']),message.data['region'])
         if location:
             self.speak_dialog('address',{'address' : location})
+            self.gui.show_page("clock_face.qml")
         else:
             self.speak_dialog('error')
 
-
+    
 
 def create_skill():
     return AhTest()
