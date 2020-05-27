@@ -13,16 +13,6 @@ def count_bikes(region):
     else:
         return r.json()['nhits']
 
-def store_address(region, index):
-    """get store address by index"""
-    r = requests.get(API_URL, params={'refine.region':region})
-    
-    if(r.json()['nhits'] == 0):
-        return None
-    else:
-        return r.json()['records'][index]]['fields']['address']
-        
-        
         
 class AhTest(MycroftSkill):
     def __init__(self):
