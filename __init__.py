@@ -36,7 +36,7 @@ class AhTest(MycroftSkill):
 
     @intent_file_handler('address.intent')
     def get_shop_address(self, message):
-        location = shop_address(int(message.data['index']),message.data['region'].capitalize())
+        location = shop_address(int(message.data['index']),message.data['region'])
         if location:
             self.speak_dialog('address',{'address' : location})
         else:
