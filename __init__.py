@@ -28,7 +28,7 @@ class AhTest(MycroftSkill):
 
     @intent_file_handler('bike.intent')
     def get_number_bikes(self, message):
-        number = count_bikes(message.data['region'])
+        number = count_bikes(message.data['region'].capitalize())
         if number:
             self.speak_dialog('bike',{'count' : count_bikes(message.data['region'])})
         else:
@@ -36,7 +36,7 @@ class AhTest(MycroftSkill):
 
     @intent_file_handler('address.intent')
     def get_shop_address(self, message):
-        location = shop_address(int(message.data['index']),message.data['region'])
+        location = shop_address(int(message.data['index']),message.data['region'].capitalize())
         if location:
             self.speak_dialog('address',{'address' : location})
         else:
