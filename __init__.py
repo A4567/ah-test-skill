@@ -7,7 +7,7 @@ import requests
 def count_bikes(region):
     API_URL = 'https://opendata.bristol.gov.uk/api/records/1.0/search/?dataset=cycle-shops-and-repairs&q='
     """Search openData for number of bike shops in region."""
-    r = requests.get(API_URL, params={'refine.region':region})
+    r = requests.get(API_URL, params={'refine.region':region.capitalize()})
     
     if(r.json()['nhits'] == 0):
         return None
@@ -16,7 +16,7 @@ def count_bikes(region):
 
 def shop_address(index,region):
     API_URL = 'https://opendata.bristol.gov.uk/api/records/1.0/search/?dataset=cycle-shops-and-repairs&q='
-    re = requests.get(API_URL, params={'refine.region':region})
+    re = requests.get(API_URL, params={'refine.region':region.capitalize()})
     if(re.json()['nhits'] == 0):
         return None
     else:
