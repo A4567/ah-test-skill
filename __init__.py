@@ -2,6 +2,8 @@ from mycroft import MycroftSkill, intent_file_handler
 
 import requests
 import webface
+import SimpleHTTPServer
+import SocketServer
 
 def count_bikes(region):
     API_URL = 'https://opendata.bristol.gov.uk/api/records/1.0/search/?dataset=cycle-shops-and-repairs&q='
