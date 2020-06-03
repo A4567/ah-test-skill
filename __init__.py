@@ -1,8 +1,7 @@
 from mycroft import MycroftSkill, intent_file_handler
 
 import requests
-import SimpleHTTPServer
-import SocketServer
+
 
 def count_bikes(region):
     API_URL = 'https://opendata.bristol.gov.uk/api/records/1.0/search/?dataset=cycle-shops-and-repairs&q='
@@ -47,10 +46,7 @@ class AhTest(MycroftSkill):
 
     @intent_file_handler('gui.intent')
     def runweb(self,message):
-        PORT = 8000
-        Handler = SimpleHTTPServer.SimpleHTTPRequestHandler
-        httpd = SocketServer.TCPServer(("", PORT), Handler)
-        httpd.serve_forever()
+        self.speak("pis are fun")
     
 
 def create_skill():
