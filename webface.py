@@ -1,12 +1,13 @@
 import SimpleHTTPServer
 import SocketServer
 
-Class WebFace:
-    PORT = 8000
 
-    Handler = SimpleHTTPServer.SimpleHTTPRequestHandler
+PORT = 8000
 
-    httpd = SocketServer.TCPServer(("", PORT), Handler)
+Handler = SimpleHTTPServer.SimpleHTTPRequestHandler
 
-    print "serving at port", PORT
-    httpd.serve_forever()
+httpd = SocketServer.TCPServer(("", PORT), Handler)
+
+print "serving at port", PORT
+print "localhost:",PORT
+httpd.serve_forever()
