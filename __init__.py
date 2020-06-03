@@ -21,7 +21,14 @@ def shop_address(index,region):
     else:
         return re.json()['records'][index]['fields']['address']
         
+def runweb():
 
+    PORT = 8000
+    Handler = SimpleHTTPServer.SimpleHTTPRequestHandler
+    httpd = SocketServer.TCPServer(("", PORT), Handler)
+    print "serving at port", PORT
+    print "localhost:",PORT
+    httpd.serve_forever()
 
         
 class AhTest(MycroftSkill):
@@ -44,6 +51,7 @@ class AhTest(MycroftSkill):
         else:
             self.speak_dialog('error')
 
+    runweb()
     
 
 def create_skill():
