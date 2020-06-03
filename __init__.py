@@ -46,7 +46,7 @@ class AhTest(MycroftSkill):
 
     @intent_file_handler('gui.intent')
     def runweb(self,message):
-        self.speak("pis are fun")
+        self.speak("no can do")
     
 
 def create_skill():
