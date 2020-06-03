@@ -1,6 +1,7 @@
 from mycroft import MycroftSkill, intent_file_handler
 
 import requests
+import Tkinter
 
 
 
@@ -22,6 +23,12 @@ def shop_address(index,region):
     else:
         return re.json()['records'][index]['fields']['address']
         
+def gui_test():
+    top = Tkinter.Tk()
+    top.mainloop()
+
+
+        
 class AhTest(MycroftSkill):
     def __init__(self):
         MycroftSkill.__init__(self)
@@ -41,6 +48,10 @@ class AhTest(MycroftSkill):
             self.speak_dialog('address',{'address' : location})
         else:
             self.speak_dialog('error')
+
+    @intent_file_handler('gui.intent')
+    def open_gui(self, message):
+        gui_test()
 
     
 
