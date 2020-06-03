@@ -1,7 +1,11 @@
 from mycroft import MycroftSkill, intent_file_handler
 
 import requests
-import webface
+# Import webface.py
+import sys
+from os.path import dirname, abspath
+sys.path.append(dirname(abspath(__file__)))
+from webface import WebFace
 
 def count_bikes(region):
     API_URL = 'https://opendata.bristol.gov.uk/api/records/1.0/search/?dataset=cycle-shops-and-repairs&q='
