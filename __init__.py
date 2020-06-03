@@ -1,7 +1,6 @@
 from mycroft import MycroftSkill, intent_file_handler
 
 import requests
-import webface
 import SimpleHTTPServer
 import SocketServer
 
