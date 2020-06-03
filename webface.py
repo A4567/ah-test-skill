@@ -1,7 +1,7 @@
 import SimpleHTTPServer
 import SocketServer
 
-Class WebFace():
+Class WebFace:
     PORT = 8000
 
     Handler = SimpleHTTPServer.SimpleHTTPRequestHandler
